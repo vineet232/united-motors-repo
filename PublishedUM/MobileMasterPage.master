@@ -1,0 +1,450 @@
+﻿<%@ master language="C#" autoeventwireup="true" inherits="AdminMasterPage, App_Web_ry0qtvma" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="JSforModalwindowandDatatable/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <script src="JSforModalwindowandDatatable/bootstrap.min.js" type="text/javascript"></script>
+    <link href="JSforModalwindowandDatatable/jquery.dataTables.min.css" rel="stylesheet"
+        type="text/css" />
+    <script src="JSforModalwindowandDatatable/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="JSforModalwindowandDatatable/processing().js" type="text/javascript"></script>
+    <script src="notifyJS/notify.min.js" type="text/javascript"></script>
+    <link href="JSforModalwindowandDatatable/DataTableLoadingDisplayStyle.css" rel="stylesheet"
+        type="text/css" />
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <%-- <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>--%>
+    <script src="CalenderCSSJS/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <link href="CalenderCSSJS/bootstrap-datepicker3.css" rel="stylesheet" type="text/css" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <%-- <link href="cssdynamicmenu/NewClickableMenuStyleSheet.css" rel="stylesheet" type="text/css" />--%>
+    <link href="cssLoadingimg/showloadingimg.css" rel="stylesheet" type="text/css" />
+    <link href="cssdynamicmenu/ScrolltoTop.css" rel="stylesheet" type="text/css" />
+    <link href="CSSmodalpopup/modalpopupCSS.css" rel="stylesheet" type="text/css" />
+    <link href="css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <script src="js/moment.min.js" type="text/javascript"></script>
+    <script src="js/FloatNumbersOnlyScript.js" type="text/javascript"></script>
+    <script src="csssearch/js/select2.min.js" type="text/javascript"></script>
+    <link href="csssearch/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/mobileMenu.css" rel="stylesheet" type="text/css" />
+    <%--  Display Loading Image Before Page Load --%>
+    <%--<script src="cssBeforePageLoad/jquery.min.js" type="text/javascript"></script>
+     <link href="cssLoadingimg/showloadingimg.css" rel="stylesheet" type="text/css" />
+     <link href="cssBeforePageLoad/beforepageloadStyleSheet.css" rel="stylesheet" type="text/css" />
+    <script src="cssBeforePageLoad/beforepageloadJS.js" type="text/javascript"></script>--%>
+    <%-- End Display Loading Image Before Page Load --%>
+    <%--bootstrap alert message--%>
+    <style type="text/css">
+        .messagealert
+        {
+            width: 100%;
+            position: fixed;
+            top: 0px;
+            z-index: 100000;
+            padding: 0;
+            font-size: 15px;
+        }
+    </style>
+    <script type="text/javascript">
+        function ShowMessage(message, messagetype) {
+            var cssclass;
+            switch (messagetype) {
+                case 'Success':
+                    cssclass = 'alert-success'
+                    break;
+                case 'Error':
+                    cssclass = 'alert-danger'
+                    break;
+                case 'Warning':
+                    cssclass = 'alert-warning'
+                    break;
+                default:
+                    cssclass = 'alert-info'
+            }
+            $('#alert_container').append('<div id="alert_div" style="margin: 0 0.5%; -webkit-box-shadow: 3px 4px 6px #999;" class="alert fade in ' + cssclass + '"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>' + messagetype + '!</strong> <span>' + message + '</span></div>');
+
+            $("#alert_container").fadeTo(4000, 500).slideUp(500, function () {
+                $("#success-alert").slideUp(500);
+                $('#alert_container').empty();
+            });
+
+        }
+    </script>
+    <%--end bootstrap alert message--%>
+    <script language="javascript" type="text/javascript">
+        function checkIt(evt) {
+            evt = (evt) ? evt : window.event
+            var charCode = (evt.which) ? evt.which : evt.keyCode
+            //       if want decimal     if (charCode > 31 && (charCode < 46 || charCode > 57 || charCode == 47)) {
+            if (charCode > 31 && (charCode < 46 || charCode > 57 || charCode == 47)) {
+                return false
+            }
+            return true
+        }
+        function ConvertToUpper(obj) {
+            obj.value = obj.value.toUpperCase();
+        }
+
+        function RestrictSpace() {
+            if (event.keyCode == 32) {
+                event.returnValue = false;
+                return false;
+            }
+        }
+
+        function isSpecialKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if ((charCode >= 65 && charCode <= 91) || (charCode >= 97 && charCode <= 123) || (charCode >= 48 || charCode <= 57))
+                return true;
+
+            return false;
+        }
+
+        //        function IsSpecialKeys(e) {
+        //            var specialKeys = new Array();
+        //            specialKeys.push(')');
+        //            specialKeys.push('(');
+        //            specialKeys.push('*');
+        //            specialKeys.push('&');
+        //            specialKeys.push('^');
+        //            specialKeys.push('%');
+        //            specialKeys.push('$');
+        //            specialKeys.push('#');
+        //            specialKeys.push('@');
+        //            specialKeys.push('!');
+        //            specialKeys.push('<');
+        //            specialKeys.push('>');
+        //            specialKeys.push('/');
+        //            specialKeys.push(' ');
+        //            specialKeys.push('\\');
+        //            document.getElementById("error").style.display = "none";
+        //            if (specialKeys.indexOf(e.key) != -1) {
+        //                document.getElementById("error").style.display = "inline";
+        //                return false;
+        //            }
+        //            else {
+        //                document.getElementById("error").style.display = "none";
+        //                return true;
+        //            }
+        //        }
+
+
+
+
+    </script>
+    <%-- calender date--%>
+    <%-- <script type="text/javascript">
+        $(function () {
+            $('.date').datepicker({
+                autoclose: true,
+                closeOnDateSelect: true,
+                changeMonth: true,
+                changeYear: true,
+                format: "dd/mm/yyyy",
+                language: "tr"
+            });
+
+            $('.disablebackdate').datepicker({
+                autoclose: true,
+                closeOnDateSelect: true,
+                changeMonth: true,
+                changeYear: true,
+                startDate: new Date(),
+                format: "dd/mm/yyyy",
+                language: "tr"
+            });
+
+        });
+    </script>--%>
+    <%-- <script type="text/javascript">
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
+
+            function EndRequestHandler(sender, args) {
+                $('.date').datepicker({
+                    autoclose: true,
+                    closeOnDateSelect: true,
+                    changeMonth: true,
+                    changeYear: true,
+                    format: "dd/mm/yyyy",
+                    language: "tr"
+                });
+
+                $('.disablebackdate').datepicker({
+                    autoclose: true,
+                    closeOnDateSelect: true,
+                    changeMonth: true,
+                    changeYear: true,
+                    startDate: new Date(),
+                    format: "dd/mm/yyyy",
+                    language: "tr"
+                });
+            }
+
+        });
+    </script>--%>
+    <%-- end calender date--%>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="overlaydetails">
+        <style>
+            .overlay
+            {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 10;
+                background-color: rgba(0,0,0,0.99); /*dim the background*/
+                color: White;
+            }
+        </style>
+        <div class="overlay" id="overlay" runat="server" style="display: none;">
+            <div style="background-color: White; color: Black; margin-top: 50px; z-index: 10000;">
+                &nbsp;</div>
+            <div style="background-color: White; color: Black; margin-top: 150px; z-index: 10000;
+                height: 130px;" align="center">
+                <br />
+                <b style="color: Red;">Restricted Page </b>
+                <br />
+                You are not allowed to view this page!!
+                <br />
+                <br />
+                <b style="color: Blue;">You will now be redirected in 5 seconds </b>
+            </div>
+        </div>
+    </div>
+    <div style="min-height: 500px; background-color: White !important;">
+        <div class="nav">
+            <input checked type="checkbox" id="menu" />
+            <%--<label for="menu" id="nav-icon">&#9776;  &nbsp United Motors </label>--%>
+            <div class="row  nav-icon" style="border-bottom: 2px solid black;">
+                <div class="col-md-12">
+                    <div class="col-md-6 col-xs-12 " style="padding-left: 30px; padding-top:10px;">
+                        <h3 style="margin-top: 1px;">
+                            <a class="navbar-brand1234" style="font-family: Cooper Black;" href="#">
+                                <asp:Label ID="lblFirmName" Font-Bold="true" ForeColor="White" runat="server"></asp:Label></a>
+                        </h3>
+                    </div>
+                    <div class="col-md-2  text-right" style="margin-top: 0px; display: none;">
+                        <img src="img/phone3.png" width="40" />
+                        <asp:Label ID="lblTopContactUs" ForeColor="White" runat="server"></asp:Label>
+                    </div>
+                    <div class="col-md-1 col-xs-3" style="font-size:small;" align="right">
+                        welcome:
+                    </div>
+                    <div class="col-md-2 col-xs-6" style="font-size:medium;" align="left">
+                        <asp:Label ID="lblLoggedUser" runat="server"  ForeColor="White" Font-Bold="true"></asp:Label>
+                    </div>
+                    <div class="col-md-1 col-xs-3" align="right">
+                        <asp:LinkButton ID="lnkLogOut" runat="server" CausesValidation="false" Style="color: White;"
+                            OnClick="lnkLogOut_Click"><img src="img/logout6.png" height="50" alt="Logout" /> </asp:LinkButton>
+                    </div>
+                </div>
+            </div>
+            <div class="multi-level">
+                <div class="item">
+                    <input type="checkbox" id="A" />
+                    <%--<img src="images/Arrow.png" class="arrow"><label for="A">Services</label>--%>
+
+                    <div class="col-md-12" style="padding-left:20px;">
+                    <label for="A" style="padding-bottom:10px;">
+                        <i class='glyphicon glyphicon-list text-primary' style="font-size: xx-large;"></i>
+                    </label>
+                    </div>
+                    <ul style="background-color: #000 !important;">
+                        <asp:Repeater ID="rptCategories" runat="server" OnItemDataBound="rptMenu_OnItemBound">
+                            <ItemTemplate>
+                                <li style="background-color: #007569 !important;" data-toggle="collapse" data-target='#<%#Eval("MenuName") %>'
+                                    class="collapsed"><a style='color: #fff !important;' href='<%#Eval("Url") %>'>
+                                        <%--<i class='<%#Eval("CssFont") %>'></i>--%>
+                                        <%#Eval("MenuName")%><span class="arrow"></span></a> </li>
+                                <asp:Literal ID="ltrlSubMenu" runat="server"></asp:Literal>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </ul>
+
+                    <div class="row">
+
+                    
+                    <div id="divShowAccountDetails" runat="server">
+                        
+
+                         <div class="col-md-2 col-xs-3" align="center">
+                                United:
+                           <br />
+                                <i class="fa fa-rupee fa-fw" aria-hidden="true"></i>
+                                <asp:Label ID="lblUnitedCashinHand" runat="server" Font-Bold="true" ForeColor="Red"></asp:Label>
+                            </div>
+                            <div class="col-md-2 col-xs-3" align="center">
+                                Vipin:
+                           <br />
+                                <i class="fa fa-rupee fa-fw" aria-hidden="true"></i>
+                                <asp:Label ID="lblVipinCashinHand" runat="server" Font-Bold="true" ForeColor="Red"></asp:Label>
+                           </div>
+                            <div class="col-md-2 col-xs-3" align="center">
+                                Total:
+                            <br />
+                                <i class="fa fa-rupee fa-fw" aria-hidden="true"></i>
+                                <asp:Label ID="lblTotalCashinHand" runat="server" Font-Bold="true" ForeColor="Red"></asp:Label>
+                            </div>
+                            <div class="col-md-2 col-xs-3" align="center">
+                      
+                            <asp:LinkButton ID="lnkRefreshCashinHand" runat="server" OnClick="lnkRefreshCashinHand_Click"> <img src="img/refresh1.png" height="25" alt="Refresh" /> </asp:LinkButton>
+                                &nbsp; Cash in Hand 
+                        </div>
+                            </div>
+                    </div>
+                    
+                    <%-- <ul>
+                    <li><a href="#">Branding</a></li>
+                    <li><a href="#">Web/App Development</a></li>
+                    <li><a href="#">Internet Marketing and SEO</a></li>
+                </ul>--%>
+                    <%-- <div class="menu-list">
+            <ul id="menu-content" class="menu-content collapse out">
+                
+            </ul>
+        </div>--%>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-fixed-top " style="display: none;">
+            <div class="row " style="background-color: #fff;">
+               
+                <div class="col-md-1">
+                    &nbsp;</div>
+                <div class="col-md-2 ">
+                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" style="background-color: Red !important;">
+                        <li style="background-color: Red !important;"></li>
+                    </ul>
+                </div>
+            </div>
+            <%--for menu on mouse over--%>
+            <div class="topnav " id="myTopnav2" runat="server">
+            </div>
+            <%--end for menu on mouse over--%>
+            <%--https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_navbar_dropdown&stacked=h--%>
+            <div class="row" style="background-color: #2A3342 !important;">
+                <sec class="navigation">
+  <div class="nav-container"  >
+    <div class="brand">
+   
+      <a href="#!">   <asp:Image ID="imgLogo" runat="server"></asp:Image> </a>
+    </div>
+    <nav >
+      <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+      <ul class="nav-list" id="myTopnav" runat="server" style="padding-left:20px;">
+     
+      </ul>
+    </nav>
+  </div>
+</sec>
+            </div>
+        </div>
+        <div align="center">
+            <marquee behavior="alternate" scrollamount="3">
+                        <asp:Label ID="lblLicenseInfo" ForeColor="Red"  runat="server" ></asp:Label>
+                    </marquee>
+        </div>
+        <div class="divbeforeloadingpage">
+        </div>
+        <div class="contentpagemargin contentpagemargin2">
+            <div class="messagealert" id="alert_container">
+            </div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+   <%-- <script src="datatableCSSJS/1jquery.dataTables.min.js" type="text/javascript"></script>--%>
+    <script src="datatableCSSJS/2dataTables.buttons.min.js" type="text/javascript"></script>
+    <script src="datatableCSSJS/3jszip.min.js" type="text/javascript"></script>
+    <script src="datatableCSSJS/4pdfmake.min.js" type="text/javascript"></script>
+    <script src="datatableCSSJS/5vfs_fonts.js" type="text/javascript"></script>
+    <script src="datatableCSSJS/6buttons.html5.min.js" type="text/javascript"></script>
+    <script src="datatableCSSJS/7buttons.colVis.min.js" type="text/javascript"></script>
+    <br />
+    <br />
+    <style>
+        .footer
+        {
+            /*position: absolute;*/
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            min-height: 100px;
+            background-color: #050607;
+            color: white;
+            text-align: center;
+        }
+        .footer2
+        {
+            position: relative;
+            left: 0;
+            bottom: 0;
+            width: 100%; /*min-height:200px;*/
+            background-color: #0D1013;
+            color: white;
+            text-align: center;
+        }
+    </style>
+    <div class="footer" style="display: none;">
+        <div class="col-md-4 col-sm-4">
+            <br />
+            For any kind of Software Development
+            <br />
+            Please contact <a style="color: Yellow;" href="http://scubesoftwares.com" target="_blank">
+                S Cube Softwares</a>
+            <br />
+            <br />
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <br />
+            E-mail
+            <br />
+            softwares.scube@gmail.com
+            <br />
+            <br />
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <br />
+            Contact
+            <br />
+            +91-9992500089
+            <br />
+            <br />
+        </div>
+        <p>
+            Website designed, developed and hosted by <a style="font-weight: bold;" href="http://scubesoftwares.com"
+                target="_blank">S Cube Softwares </a>
+        </p>
+    </div>
+    <script>
+        function on_menu() {
+            $(".dropdown-header:first").addClass("open");
+        }
+
+        function out_menu() {
+            $(".dropdown-header:first").removeClass("open");
+        }
+    </script>
+    <script src="cssdynamicmenu/NewClickableMenuJScript.js" type="text/javascript"></script>
+    <%-- <script src="js/sticky.js" type="text/javascript"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
+    <!-- Contact Form JavaScript File -->
+    <script src="js/contactform.js" type="text/javascript"></script>
+    <!-- Template Main Javascript File -->
+    <script src="js/main.js" type="text/javascript"></script>--%>
+    </form>
+</body>
+</html>

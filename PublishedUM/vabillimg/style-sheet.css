@@ -1,0 +1,102 @@
+/*@charset "utf-8";*/
+/* CSS Document */
+
+body
+{
+/*	margin:0px;
+	padding:0px;
+	font-size:14px;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	color:#575757;
+	background-image:url(bg.jpg);*/
+}
+/*h2
+{
+	color:#ee5f01;
+}
+h3
+{
+	color:#ee5f01;
+}
+h4
+{
+	color:#7CB6DB;
+}
+h1
+{
+	color:#7CB6DB;
+}*/
+.menu5
+{
+	color:#FFF; text-decoration:none;
+}
+.menu5:hover{color:#FF0;}
+		
+
+#dropmenudiv{
+	position:absolute;
+	margin-left:-12px;
+	margin-top:14px;
+	border-bottom-width: 0;
+	border:1px solid #EB5E04;
+	font-size:12px;
+	line-height:24px;
+	z-index:100;
+	background:transparent;
+	filter:alpha(opacity=85);moz-opacity:1.0;opacity:1.0;
+}
+
+#dropmenudiv a{
+	background-color:Navy;
+	color:#FFFFFF;
+	border-bottom:1px solid #BBBBBB;
+	display: block;
+	text-indent: 3px;
+	padding: 2px 5px;
+	text-decoration: none;
+	font-family:arial;
+}
+
+#dropmenudiv a:hover {
+	/*background-color:#7CB6DB;
+	color:#FFF;*/
+	background-color:Blue;
+}
+
+
+
+
+
+
+
+
+
+.main {
+width:200px;
+border:1px #d1cbb1;
+}
+
+.month {
+background-color:#eb5e04;
+font:bold 12px verdana;
+color:white;
+}
+
+.daysofweek {
+background-color:#658890;
+font:bold 12px verdana;
+color:white;
+}
+
+.days {
+font-size: 12px;
+font-family:verdana;
+color:#eb5e04;
+background-color:#f0eee1;
+padding: 2px;
+}
+
+.days #today{
+font-weight: bold;
+color: red;
+}

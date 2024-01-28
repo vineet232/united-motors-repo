@@ -1,0 +1,63 @@
+﻿<%@ page title="" language="C#" masterpagefile="~/AdminMasterPage.master" autoeventwireup="true" inherits="DateWiseEstimate, App_Web_xgwfkdro" %>
+
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+    Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<link href="vabillimg/style-sheet.css" rel="stylesheet" type="text/css" />
+    <script src="vabillimg/CalendarControl.js" type="text/javascript"></script>
+    <link href="vabillimg/CalendarControl.css" rel="stylesheet" type="text/css" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+<table width="100%">
+    <tr>
+        <td>
+            <table width="80%">
+                <tr>
+                    
+                    <td>
+                        From Date: <asp:TextBox ID="txtFirstDate" MaxLength="10" onfocus="showCalendarControl(this);" ToolTip="MM/DD/YYYY" Width="70px" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rw1" runat="server" ControlToValidate="txtFirstDate" SetFocusOnError="true" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                        &nbsp;
+                        To Date: <asp:TextBox ID="txtSecondDate" MaxLength="10" onfocus="showCalendarControl(this);" ToolTip="MM/DD/YYYY" Width="70px" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtSecondDate" SetFocusOnError="true" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                    </td>
+                    <td>
+                        <asp:Button ID="btnShow" runat="server" OnClick="ShowReport" Text="Show Report.." CssClass="button" />
+                    </td>
+                </tr>
+            </table>
+        </td>
+
+    </tr>
+    <tr>
+        <td>
+            <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" 
+                Font-Size="8pt" InteractiveDeviceInfos="(Collection)" 
+                WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="100%" Height="800px">
+                <LocalReport ReportPath="DatewiseEstimateRPT.rdlc">
+                    <DataSources>
+                        <rsweb:ReportDataSource DataSourceId="ObjectDataSource1" Name="DataSet1" />
+                    </DataSources>
+                </LocalReport>
+            </rsweb:ReportViewer>
+           
+            <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
+                OldValuesParameterFormatString="original_{0}" SelectMethod="GetData" 
+                TypeName="datewiseEstimateDSTableAdapters.ESTIMATEMASTableAdapter">
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="txtFirstDate" DefaultValue="1/1/1900" 
+                        Name="date1" PropertyName="Text" Type="DateTime" />
+                    <asp:ControlParameter ControlID="txtSecondDate" DefaultValue="1/1/1900" 
+                        Name="date2" PropertyName="Text" Type="DateTime" />
+                </SelectParameters>
+            </asp:ObjectDataSource>
+           
+        </td>
+    </tr>
+</table>
+
+</asp:Content>
+

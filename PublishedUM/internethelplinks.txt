@@ -1,0 +1,20 @@
+﻿https://www.aspsnippets.com/Articles/Open-Show-Bootstrap-Modal-Popup-Window-from-Server-Side-Code-Behind-in-ASPNet.aspx
+
+https://stackoverflow.com/questions/25172311/display-bootstrap-modal-from-asp-net-webforms
+
+
+https://stackoverflow.com/questions/64964472/modal-popup-form-validation-not-working-in-onclick-function
+
+
+https://www.codeproject.com/Questions/700917/POP-UP-WITHOUT-AJAX-AND-JQUERY
+
+https://www.webcodeexpert.com/2016/02/bootstrap-modal-dialog-popup-example-in.html
+
+
+https://www.aspsnippets.com/questions/146384/Open-Modal-Popup-on-Button-click-with-different-Title-and-Body-using-C-and-VBNet-in-ASPNet/
+
+https://www.aspsnippets.com/Articles/Download-File-from-Web-Method-via-AJAX-call-in-ASPNet.aspx
+//////////////implemented in insurance claims
+
+
+

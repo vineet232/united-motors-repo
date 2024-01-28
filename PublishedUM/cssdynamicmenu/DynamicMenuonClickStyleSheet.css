@@ -1,0 +1,87 @@
+﻿body {margin:0;font-family:Arial}
+
+.page-header h3 {
+  margin-top: 0;
+}
+
+.navbar-brand {
+  color: white !important;
+  background-color:Red !important;
+}
+
+.navbar .navbar-default
+{
+    background-color: #00988A !important;
+}
+
+
+/*
+.nav
+    {
+        width:100%;
+        padding-left:15px;
+    }*/
+    
+    
+    /* top menu background colour */
+  #bs-example-navbar-collapse-1
+    {
+        background-color:#2A3342 !important;
+        color:White;
+    }
+   
+   
+  /* top menu colour */
+ li a {
+  color: white !important;
+  background-color: #2A3342 !important;
+}
+
+/* top menu hover background colour */
+li a:hover {
+  background-color: #00988A !important;
+  
+}
+
+/* top menu hover background colour on focus */
+li a:focus {
+  background-color: #00C1AE !important;
+  
+}
+
+
+/* sub menu background color */
+.dropdown-menu {
+  background-color: #2A3342 !important;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  
+}
+
+
+
+
+.dropdown-menu li 
+{
+   /*font-size: 13px; 
+
+   
+  border: none;
+  outline: none;
+  color: white;
+  padding: 1px 1px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;*/
+  
+  margin-top:2px;
+  
+}
+
+
+
+
+
+
+
+
+
